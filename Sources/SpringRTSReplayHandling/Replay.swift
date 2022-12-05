@@ -52,7 +52,7 @@ public struct Replay {
         self.header = Header(
             version: Int(version),
             springVersion: String(cString: rawHeader.springVersion),
-            gameID: String(cString: rawHeader.gameID),
+            gameID: rawHeader.gameID.reduce("", { $0 + String($1) }),
             gameStartDate: Date(timeIntervalSince1970: TimeInterval(rawHeader.unixTime)),
             duration: Int(rawHeader.gameTime)
         )
